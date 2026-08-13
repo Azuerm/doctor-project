@@ -1,0 +1,31 @@
+/* css初始化文件 */
+body,ul,li,p,h1,h2,h2,h3,h4,h5 {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+img {
+  border: 0;
+}
+body {
+  font-size: 14px;
+  margin: 0 auto;
+  max-width: 750px;
+}
+/* 移动端适配  采用vw单位*/
+html {
+  font-size: 13.333vw;
+}
+/* 视口宽度大于等于750px时，字体大小为100px */
+/* 防止文字过大 */
+@media (min-width: 750px) {
+  html {
+    font-size: 100px;
+  }
+}
