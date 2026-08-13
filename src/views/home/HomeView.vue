@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="banner">
-      <img src="../../assets/images/banner.jpg" alt="" height="180px" width="100%">
+      <img :src="picture" alt="" height="180px" width="100%">
     </div>
     <InfoDisplay :userInfo="infoList"/>
-    <div class="navlist">
+    <div class="navlist" @click='goPhone'>
       <div class="navitem">
         <div class="circle"></div>
         <div>手机</div>
@@ -22,18 +22,26 @@
         <div>其他</div>
       </div>
     </div>
+    <DataDisplay/>
   </div>
 </template>
 
 <script setup>
 import {ref} from "vue"
-import InfoDisplay from "./info-data/InfoDisplay.vue";
-import { getInfo } from "../../api/index"
+import InfoDisplay from "@/views/home/info-data/InfoDisplay.vue";
+import DataDisplay from "@/views/home/info-data/dataDisplay.vue"
+import { getInfo } from "@/api/index"
+import picture from "@/assets/images/banner.jpg"
+import { useRouter } from "vue-router";
+const router = useRouter();
 const infoList = ref([])
 getInfo().then((res) => {
   infoList.value = res.data.data;
   console.log('xxx',infoList.value)
 })
+const goPhone = () => {
+  router.push('/phone')
+}
 </script>
 
 <style scoped>

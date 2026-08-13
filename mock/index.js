@@ -29,7 +29,37 @@ export default {
       },
     ],
   },
-
+  'GET /api/docter/data':{
+    code: 200,
+    msg: 'success',
+    data:[
+      {
+        number:3300,
+        text:'今日就诊人数',
+      },
+      {
+        number: 211100,
+        text: '今日预约人数',
+      },
+      {
+        number: 300,
+        text: '今日挂号人数',
+      },
+      {
+        number: 11100,
+        text: '今日问诊人数',
+      }, 
+      {
+        number: 100,
+        text: '今日挂号人数',
+      },
+      {
+        number: 10000,
+        text: '今日挂号人数',
+      },
+    ],
+    time: '1786579200000'
+  },
   'POST /api/user/login': {
     code: 0,
     msg: '登录成功',
