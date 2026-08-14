@@ -18,3 +18,9 @@ export const getAreaData = () => {
     url: '/api/area'
   })
 }
+export const getMapData = () => {
+  return request({
+    method: 'get',
+    url: '/api/province'
+  })
+}

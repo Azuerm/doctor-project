@@ -34,6 +34,7 @@
       </template>
     </div>
     <DataDisplay/>
+    <ChinaMap/>
   </div>
 </template>
 
@@ -41,6 +42,7 @@
 import {ref, onMounted, computed} from "vue"
 import InfoDisplay from "@/views/home/info-data/InfoDisplay.vue";
 import DataDisplay from "@/views/home/info-data/dataDisplay.vue"
+import ChinaMap from "@/views/home/map-data/chinaMap.vue"
 import { getInfo } from "@/api/index"
 import picture from "@/assets/images/banner.jpg"
 import { useRouter } from "vue-router";

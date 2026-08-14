@@ -4,7 +4,7 @@
       <img :src="titleimage" alt="" height="180px" width="100%"> 
     </div>
     <div class="content">
-      <van-tabs :active="active" swiperable>
+      <van-tabs v-model:active="active" swiperable>
         <van-tab v-for="item in danList " :key="item.id" :title="item.name">
           <img :src="item.img" alt="">
         </van-tab>

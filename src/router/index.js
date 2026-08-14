@@ -21,10 +21,10 @@ const router = createRouter({
       component: () => import('@/views/erji/index.vue')
     }, 
     {
-      path: '/computer',
-      name: 'computer',
-      component: () => import('@/views/computer/index.vue')
-    }
+      path: '/erji',
+      name: 'erji',
+      component: () => import('@/views/erji/index.vue')
+    },
   ],
 })
 
