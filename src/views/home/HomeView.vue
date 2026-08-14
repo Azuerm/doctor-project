@@ -15,7 +15,7 @@
             <div>耳机</div>
           </router-link>
       </div>
-      <div class="navitem">
+      <div class="navitem" @click="goComputer">
         <div class="circle"></div>
         <div>电脑</div>
       </div>
@@ -54,6 +54,9 @@ const router = useRouter();
 
 const goPhone = () => {
   router.push('/phone')
+}
+const goComputer = () => {
+  router.push('/computer')
 }
 onMounted(() => {
   counterStore.getAreaList()

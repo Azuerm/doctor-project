@@ -19,6 +19,11 @@ const router = createRouter({
       path: '/erji',
       name: 'erji',
       component: () => import('@/views/erji/index.vue')
+    }, 
+    {
+      path: '/computer',
+      name: 'computer',
+      component: () => import('@/views/computer/index.vue')
     }
   ],
 })
