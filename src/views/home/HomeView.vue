@@ -24,22 +24,41 @@
         <div>其他</div>
       </div>
     </div>
+    <div>
+      <template v-if="areaMidList.length > 0" >
+        <div class="tile">中风险区域 {{ areaMidList.length }}</div>
+        <div class="areaitem" v-for="item in areaMidList" :key="item">
+          <span>{{ item.name }}</span>
+          <span>{{ item.desc }}</span>
+        </div>
+      </template>
+    </div>
     <DataDisplay/>
   </div>
 </template>
 
 <script setup>
-import {ref} from "vue"
+import {ref, onMounted, computed} from "vue"
 import InfoDisplay from "@/views/home/info-data/InfoDisplay.vue";
 import DataDisplay from "@/views/home/info-data/dataDisplay.vue"
 import { getInfo } from "@/api/index"
 import picture from "@/assets/images/banner.jpg"
 import { useRouter } from "vue-router";
+
+import { storeToRefs } from "pinia"
+import { useCounterStore } from "@/stores/counter"
+const counterStore = useCounterStore()
+const { areaList } = storeToRefs(counterStore)
+
 const router = useRouter();
 
 const goPhone = () => {
   router.push('/phone')
 }
+onMounted(() => {
+  counterStore.getAreaList()
+}) 
+const areaMidList = computed(() => areaList.value[0]?.middle || [])
 </script>
 
 <style scoped>

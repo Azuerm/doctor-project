@@ -39,7 +39,7 @@ onMounted(async() => {
     getContainer: () => mainRef.value, // 指定挂载节点,默认是body
   })
   try {
-    await counterStore.getAreaList();
+    await counterStore.getAreaList(true);
   } catch (error) {
     console.log(error);
   } finally {
