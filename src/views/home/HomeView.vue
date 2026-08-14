@@ -3,15 +3,17 @@
     <div class="banner">
       <img :src="picture" alt="" height="180px" width="100%">
     </div>
-    <InfoDisplay :userInfo="infoList"/>
-    <div class="navlist" @click='goPhone'>
-      <div class="navitem">
+    <InfoDisplay/>
+    <div class="navlist" >
+      <div class="navitem" @click='goPhone'>
         <div class="circle"></div>
         <div>手机</div>
       </div>
-      <div class="navitem">
-        <div class="circle"></div>
-        <div>耳机</div>
+       <div class="navitem">
+          <router-link to="/erji">
+            <div class="circle"></div>
+            <div>耳机</div>
+          </router-link>
       </div>
       <div class="navitem">
         <div class="circle"></div>
@@ -34,11 +36,7 @@ import { getInfo } from "@/api/index"
 import picture from "@/assets/images/banner.jpg"
 import { useRouter } from "vue-router";
 const router = useRouter();
-const infoList = ref([])
-getInfo().then((res) => {
-  infoList.value = res.data.data;
-  console.log('xxx',infoList.value)
-})
+
 const goPhone = () => {
   router.push('/phone')
 }

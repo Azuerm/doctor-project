@@ -14,6 +14,11 @@ const router = createRouter({
       name: 'phone',
       component: () => import('@/views/phone/index.vue')
       // 异步导入、路由懒加载
+    },
+    {
+      path: '/erji',
+      name: 'erji',
+      component: () => import('@/views/erji/index.vue')
     }
   ],
 })

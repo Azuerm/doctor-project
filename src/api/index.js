@@ -12,3 +12,9 @@ export const getNumberData = () => {
     url: '/api/docter/data'
   })
 }
+export const getAreaData = () => {
+  return request({
+    method: 'get',
+    url: '/api/area'
+  })
+}

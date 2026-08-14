@@ -6,6 +6,9 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 import path from 'path' // 处理路径问题
 
+import Components from 'unplugin-vue-components/vite' // 引入vant插件
+import { VantResolver } from 'unplugin-vue-components/resolvers' // 引入vant插件的解析器，用于自动导入vant插件的组件库
+
 import mockData from './mock/index.js'
 
 // Vite 插件：开发环境拦截 /api 请求，返回 mock 数据
@@ -46,6 +49,9 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     viteMockServer(),
+    Components({
+      resolvers: [ VantResolver() ], // 自动按需引入 Vant 组件
+    })
   ],
   server: {
     port: 5173,
