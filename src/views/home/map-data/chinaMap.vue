@@ -17,7 +17,8 @@
 <script setup>
 import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import { getMapData } from '@/api/index'
-
+import { useRouter } from 'vue-router'
+const router = useRouter()
 // ---------- 性能优化①: echarts 按需引入 ----------
 // 之前用 `import * as echarts from 'echarts'` 会打进整个 echarts 全量包(约 1MB),
 // 现在只引入地图相关的核心模块,首屏 JS 体积明显减小。
@@ -58,8 +59,11 @@ function buildMapOption(data) {
   return {
     // tooltip: 悬浮到省份上时显示的数据提示框
     tooltip: {
-      trigger: 'item', // item: 按数据项触发
-      formatter: (params) => `${params.name}<br/>数值: ${params.value || 0}`, // 自定义悬浮内容
+      // trigger: 'item', // item: 按数据项触发
+      triggerOn: 'click',
+      enterable: true, // 鼠标进入提示框区域时,不立即隐藏
+      formatter: (params) => `${params.name}<br/>数值: ${params.value || 0}<br/>详情：<span class="province-link" data-province="${params.name}">跳转</span>`, // 自定义悬浮内容
+      // data-name的作用：点击跳转时，作为路由参数传递
     },
     // visualMap: 按 value 大小映射颜色深浅
     visualMap: {
@@ -97,6 +101,14 @@ function createChart(container, data) {
   if (!container) return null
   const chart = echarts.init(container)
   chart.setOption(buildMapOption(data))
+
+  // tooltip 内容是纯 HTML,不支持 @click;改用事件委托绑定跳转
+  container.addEventListener('click', (e) => {
+    // closest的作用：从当前元素开始向上查找，直到找到符合条件的元素
+    const link = e.target.closest?.('.province-link')
+    if (link) goProvince(link.dataset.province)
+  })
+
   return chart
 }
 
@@ -131,6 +143,13 @@ watch(active, (val) => {
   chart && chart.resize()
 })
 
+// 点击省份跳转到详情页
+const goProvince = (name) => {
+  router.push({
+    name: 'province',
+    params: { provinceName: name } 
+  })
+}
 onBeforeUnmount(() => {
   // 卸载时销毁两个图表实例,释放内存
   if (workMyChart) {
@@ -153,4 +172,11 @@ onBeforeUnmount(() => {
     width: 100%;
     height: 8rem;
   }
+  // :global(.province-link) {
+  //   color: red;
+  // }
+  :deep(.province-link) {
+    color: red;
+  }
+  // 所以是因为vue的scoped机制做了防伪标，但echarts的tooltip是js动态生成的，直接挂载在body根节点，不知道vue的存在，没有防伪标对不上，只有通过global/deep不管防伪标才能找到元素
 </style>

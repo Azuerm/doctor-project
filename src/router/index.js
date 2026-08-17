@@ -21,10 +21,11 @@ const router = createRouter({
       component: () => import('@/views/erji/index.vue')
     }, 
     {
-      path: '/erji',
-      name: 'erji',
-      component: () => import('@/views/erji/index.vue')
-    },
+      path: '/province/:provinceName',
+      name: 'province',
+      component: () => import('@/views/province/index.vue'),
+      props: true // 将路由参数映射到组件的props属性上
+    }
   ],
 })
 
