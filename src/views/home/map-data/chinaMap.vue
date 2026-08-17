@@ -21,13 +21,12 @@ import { getMapData } from '@/api/index'
 // ---------- 性能优化①: echarts 按需引入 ----------
 // 之前用 `import * as echarts from 'echarts'` 会打进整个 echarts 全量包(约 1MB),
 // 现在只引入地图相关的核心模块,首屏 JS 体积明显减小。
-// import * as echarts from 'echarts/core'
-// import { MapChart } from 'echarts/charts'
-// import { TooltipComponent, VisualMapComponent } from 'echarts/components'
-// import { CanvasRenderer } from 'echarts/renderers'
-// // 注册用到的图表类型 / 组件 / 渲染器
-// echarts.use([MapChart, TooltipComponent, VisualMapComponent, CanvasRenderer])
 import * as echarts from 'echarts/core'
+import { MapChart } from 'echarts/charts'
+import { TooltipComponent, VisualMapComponent } from 'echarts/components'
+import { CanvasRenderer } from 'echarts/renderers'
+// 注册用到的图表类型 / 组件 / 渲染器
+echarts.use([MapChart, TooltipComponent, VisualMapComponent, CanvasRenderer])
 
 // ---------- 性能优化②: 中国地图 GeoJSON 动态加载 ----------
 let chinaReady = null // 缓存注册 Promise,避免重复 import/registerMap
