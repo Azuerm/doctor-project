@@ -25,6 +25,17 @@ const router = createRouter({
       name: 'province',
       component: () => import('@/views/province/index.vue'),
       props: true // 将路由参数映射到组件的props属性上
+    },
+    {
+      path: '/list',
+      name: 'list',
+      component: () => import('@/views/list/index.vue')
+    },
+    {
+      path: '/detail/:productId/:productName',
+      name: 'detail',
+      component: () => import('@/views/list/detail.vue'),
+      props: true // 将路由参数映射到组件的props属性上
     }
   ],
 })

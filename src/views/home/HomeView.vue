@@ -23,6 +23,10 @@
         <div class="circle"></div>
         <div>其他</div>
       </div>
+      <div class="navitem" @click="goList">
+        <div class="circle"></div>
+        <div>列表</div>
+      </div>
     </div>
     <div>
       <template v-if="areaMidList.length > 0" >
@@ -59,6 +63,9 @@ const goPhone = () => {
 }
 const goComputer = () => {
   router.push('/computer')
+}
+const goList = () => {
+  router.push('/list')
 }
 onMounted(() => {
   counterStore.getAreaList()
