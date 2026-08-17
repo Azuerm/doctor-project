@@ -34,7 +34,9 @@ function viteMockServer() {
           const chunks = []
           for await (const chunk of req) chunks.push(chunk)
           const body = chunks.length ? JSON.parse(Buffer.concat(chunks)) : {}
-          send(mock(body))
+          // 解析 GET 的 query 参数,传给 mock 函数(第二个参数)
+          const query = Object.fromEntries(new URL(req.url, 'http://localhost').searchParams)
+          send(mock(body, query))
         } else {
           send(mock)
         }

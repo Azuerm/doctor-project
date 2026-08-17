@@ -1,3 +1,19 @@
+import CryptoJS from 'crypto-js'
+
+// 省份 -> 下辖地区数据
+const provinceDetailMap = {
+  广东: [
+    { name: '广州' }, { name: '深圳' }, { name: '佛山' }, { name: '东莞' },
+    { name: '珠海' }, { name: '中山' }, { name: '惠州' }, { name: '汕头' },
+    { name: '江门' }, { name: '湛江' }, { name: '肇庆' }, { name: '茂名' },
+  ],
+  广西: [
+    { name: '南宁' }, { name: '柳州' }, { name: '桂林' }, { name: '梧州' },
+    { name: '北海' }, { name: '防城港' }, { name: '钦州' }, { name: '贵港' },
+    { name: '玉林' }, { name: '百色' }, { name: '贺州' }, { name: '河池' },
+  ],
+}
+
 export default {
   'GET /api/user/info': {
     code: 200,
@@ -163,4 +179,18 @@ export default {
       { provincearea: '澳门', worknum: '420', kidnum: '35' },
     ],
   }),
+  'GET /api/provinceDetail': (body, query) => {
+    // 前端传的是加密后的省份名: 明文 + MD5(明文),例如 '广东' + MD5('广东')
+    const raw = Object.values(query)[0] || ''
+    // 末尾 32 位是 MD5,前面是明文省份名
+    const md5 = raw.slice(-32)
+    const name = raw.slice(0, -32)
+    // 后端校验 MD5 是否与明文匹配,防止伪造
+    const isValid = !!name && CryptoJS.MD5(name).toString() === md5
+    return {
+      code: 200,
+      msg: isValid ? 'success' : '签名校验失败',
+      data: isValid ? provinceDetailMap[name] || [] : null,
+    }
+  },
 }

@@ -24,3 +24,10 @@ export const getMapData = () => {
     url: '/api/province'
   })
 }
+export const getProvinceDetail = (data) => {
+  return request({
+    method: 'get',
+    url: '/api/provinceDetail',
+    params: data
+  })
+}

@@ -5,5 +5,6 @@
 </template>
 
 <script setup>
-defineProps(['productName'])
+const props = defineProps(['productName'])
+console.log('productName', props.productName)
 </script>
