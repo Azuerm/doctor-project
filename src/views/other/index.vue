@@ -38,7 +38,7 @@
         />
       </van-popup>
       <div class="btn">
-        <van-button type="primary" size="small">确 定</van-button>
+        <van-button type="primary" size="small" @click="searchDetail">搜索 详细</van-button>
       </div>
     </div>
   </div>
@@ -46,7 +46,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getSelectArea } from '@/api/index'
+import { getSelectArea, getSelectAreaDetail } from '@/api/index'
 const show = ref(false)
 const fieldValue = ref('')
 const cascaderValue = ref('')
@@ -54,12 +54,16 @@ const cascaderValue2 = ref('')
 const show2 = ref(false)
 const fieldValue2 = ref('')
 const options = ref([])
-const onFinish = ({ selectedOptions }) => {
+const from = ref('')
+const to = ref('')
+const onFinish = ({ value, selectedOptions }) => {
+  from.value = value
   show.value = false
   fieldValue.value = selectedOptions.map((option) => option.text).join('/')
   // join 数组转换为字符串，用 '/' 分隔
 }
-const onFinish2 = ({ selectedOptions }) => {
+const onFinish2 = ({ value, selectedOptions }) => {
+  to.value = value
   show2.value = false
   fieldValue2.value = selectedOptions.map((option) => option.text).join('/')
 }
@@ -82,6 +86,13 @@ onMounted(async() => {
   options.value = areaOptions
   
 })
+const searchDetail = async() => {
+  const res = await getSelectAreaDetail({
+    from: from.value,
+    to: to.value,
+  })
+  console.log('res', res);
+}
 </script>
 
 <style lang="less" scoped>

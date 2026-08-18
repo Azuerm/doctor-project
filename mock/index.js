@@ -237,4 +237,21 @@ export default {
       },
     ],
   },
+  // 地区详情接口: 根据 from / to 两个地区参数返回详细信息
+  'GET /api/areaInfo': (body, query) => {
+    const from = query.from || ''
+    const to = query.to || ''
+    return {
+      code: 200,
+      msg: 'success',
+      data: {
+        from,
+        to,
+        distance: Math.floor(Math.random() * 2000) + 100,
+        duration: Math.floor(Math.random() * 10) + 1,
+        price: Math.floor(Math.random() * 800) + 100,
+        departures: Math.floor(Math.random() * 30) + 1,
+      },
+    }
+  },
 }

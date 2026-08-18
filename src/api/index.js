@@ -37,3 +37,10 @@ export const getSelectArea = () => {
     url: '/api/areaList'
   })
 }
+export const getSelectAreaDetail = (data) => {
+  return request({
+    method: 'get',
+    url: '/api/areaInfo',
+    params: data
+  })
+}
