@@ -36,6 +36,11 @@ const router = createRouter({
       name: 'detail',
       component: () => import('@/views/list/detail.vue'),
       props: true // 将路由参数映射到组件的props属性上
+    },
+    {
+      path: '/other',
+      name: 'other',
+      component: () => import('@/views/other/index.vue')
     }
   ],
 })

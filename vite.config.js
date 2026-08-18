@@ -56,7 +56,14 @@ export default defineConfig({
     })
   ],
   server: {
-    port: 5173,
+    // port: 5173,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true, // 允许跨域请求
+        rewrite: (path) => path.replace(/^\/api/, '') // 重写路径，去掉/api前缀
+      }
+    }
   },
   resolve: {
     alias: {

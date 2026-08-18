@@ -193,4 +193,48 @@ export default {
       data: isValid ? provinceDetailMap[name] || [] : null,
     }
   },
+  // 地区数据接口: 返回省 -> 市的二级联动数据
+  'GET /api/areaList': {
+    code: 200,
+    msg: 'success',
+    data: [
+      {
+        province_id: '1',
+        province: '北京',
+        citys: [{ city: '北京市', city_id: '10100' }],
+      },
+      {
+        province_id: '2',
+        province: '天津',
+        citys: [{ city: '天津市', city_id: '10200' }],
+      },
+      {
+        province_id: '3',
+        province: '河北省',
+        citys: [
+          { city: '石家庄市', city_id: '130100' },
+          { city: '唐山市', city_id: '130200' },
+          { city: '秦皇岛市', city_id: '130300' },
+        ],
+      },
+      {
+        province_id: '4',
+        province: '广东省',
+        citys: [
+          { city: '广州市', city_id: '440100' },
+          { city: '深圳市', city_id: '440300' },
+          { city: '佛山市', city_id: '440600' },
+        ],
+      },
+      {
+        province_id: '5',
+        province: '浙江省',
+        citys: [
+          { city: '杭州市', city_id: '330100' },
+          { city: '宁波市', city_id: '330200' },
+          { city: '温州市', city_id: '330300' },
+        ],
+      },
+    ],
+  },
 }

@@ -19,7 +19,7 @@
         <div class="circle"></div>
         <div>电脑</div>
       </div>
-      <div class="navitem">
+      <div class="navitem" @click="goOther">
         <div class="circle"></div>
         <div>其他</div>
       </div>
@@ -65,6 +65,9 @@ const goPhone = () => {
 }
 const goComputer = () => {
   router.push('/computer')
+}
+const goOther = () => {
+  router.push('/other')
 }
 const goList = () => {
   router.push('/list')

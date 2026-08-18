@@ -31,3 +31,9 @@ export const getProvinceDetail = (data) => {
     params: data
   })
 }
+export const getSelectArea = () => {
+  return request({
+    method: 'get',
+    url: '/api/areaList'
+  })
+}
