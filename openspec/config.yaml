@@ -1,0 +1,20 @@
+schema: spec-driven
+
+# 项目上下文：AI 在生成任何文档前都会先读取这里
+context: |
+  技术栈：Vue 3, Vite, Vant 4, Pinia, vue-router, axios, echarts
+  代码规范：注释与提交信息均使用中文，移动端优先
+  目录约定：页面在 src/views/<name>/index.vue，API 在 src/api/index.js
+
+# 针对特定产出物的规则
+rules:
+  # 针对 tasks.md 的生成规则
+  tasks: |
+    在拆解任务时，必须在每个具体任务前编写清晰的中文注释，
+    明确说明这一步的具体业务目的和实现逻辑。
+    注释应简洁明了，让后续维护者能一眼看懂该步骤的作用。
+  
+  # 针对 proposal.md 的规则
+  proposal: |
+    提案必须使用中文编写。
+    在“Scope”部分明确列出受影响的 Vue 组件和 API 接口。
