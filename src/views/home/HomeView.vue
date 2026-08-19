@@ -3,6 +3,9 @@
     <div class="banner">
       <img :src="picture" alt="" height="180px" width="100%">
     </div>
+    <div>
+      <h2 style="text-align: center; font-weight: bold;">测试自动化CI、CD流程</h2>
+    </div>
     <InfoDisplay/>
     <div class="navlist" >
       <div class="navitem" @click='goPhone'>
