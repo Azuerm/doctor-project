@@ -47,6 +47,7 @@ function viteMockServer() {
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/doctor-project/', // github部署仓库路径
   plugins: [
     vue(),
     vueDevTools(),
